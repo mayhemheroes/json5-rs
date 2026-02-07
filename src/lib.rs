@@ -114,7 +114,7 @@
 
 #[macro_use]
 mod de;
-mod char;
+pub mod char;
 mod error;
 mod ser;
 

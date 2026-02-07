@@ -7,6 +7,7 @@ use crate::unicode::{
 /// This is NOT the same as [`char::is_whitespace`].
 ///
 /// <https://spec.json5.org/#white-space>
+#[must_use]
 pub fn is_json5_whitespace(c: char) -> bool {
     matches!(
         c,
@@ -15,11 +16,13 @@ pub fn is_json5_whitespace(c: char) -> bool {
 }
 
 /// <https://262.ecma-international.org/5.1/#sec-7.3>
+#[must_use]
 pub fn is_json5_line_terminator(c: char) -> bool {
     matches!(c, '\u{000A}' | '\u{000D}' | '\u{2028}' | '\u{2029}')
 }
 
 /// <https://262.ecma-international.org/5.1/#sec-7.6>
+#[must_use]
 pub fn is_json5_identifier_start(c: char) -> bool {
     matches!(c, '$' | '_')
         || UPPERCASE_LETTER.contains_char(c)
@@ -31,6 +34,7 @@ pub fn is_json5_identifier_start(c: char) -> bool {
 }
 
 /// <https://262.ecma-international.org/5.1/#sec-7.6>
+#[must_use]
 pub fn is_json5_identifier(c: char) -> bool {
     is_json5_identifier_start(c)
         || matches!(c, '\u{200C}' | '\u{200D}')
@@ -41,6 +45,7 @@ pub fn is_json5_identifier(c: char) -> bool {
 }
 
 /// <https://spec.json5.org/#strings>
+#[must_use]
 pub fn escape(delimeter: char, c: char) -> Option<&'static str> {
     match c {
         '"' if delimeter == '"' => Some(r#"\""#),
